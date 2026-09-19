@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "API Learning",
+    "_postman_id": "F03114fe052cc7097ea53fbc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get User 2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://reqres.in/api/users/2",
+          "protocol": "https",
+          "host": ["reqres", "in"],
+          "path": ["api", "users", "2"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"User ID is 2\", function () {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.data.id).to.eql(2);",
+              "});",
+              "pm.test(\"Email exists\", function () {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.data.email).to.not.be.null;",
+              "});",
+              "pm.test(\"First Name Exists\", function () {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.data.first_name).to.not.be.null;",
+              "});",
+              "pm.test(\"Last Name Exists\", function () {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.data.last_name).to.not.be.null;",
+              "});",
+              "pm.test(\"Response time is less than 500ms\", function () {",
+              "  pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});",
+              "pm.test(\"Email contains @\", function () {",
+              "  var jsonData = pm.response.json();",
+              "  pm.expect(jsonData.data.email).to.include(\"@\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Invalid user request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://reqres.in/api/users/999",
+          "protocol": "https",
+          "host": ["reqres", "in"],
+          "path": ["api", "users", "999"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "  pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get user 4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://reqres.in/api/users/4",
+          "protocol": "https",
+          "host": ["reqres", "in"],
+          "path": ["api", "users", "4"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"User ID is 4\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data.id).to.eql(4);",
+              "});",
+              "",
+              "pm.test(\"User email is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data.email).to.eql(\"eve.holt@reqres.in\");",
+              "});",
+              "",
+              "pm.test(\"User first name is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.data.first_name).to.eql(\"Eve\");",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 500ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
